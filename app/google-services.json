@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "181360795684",
+    "firebase_url": "https://tg-novo.firebaseio.com",
+    "project_id": "tg-novo",
+    "storage_bucket": "tg-novo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181360795684:android:f135691da9326189",
+        "android_client_info": {
+          "package_name": "com.example.tg_novo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181360795684-kvm0mf1prt31nnmk34u8pu3osujeg2jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr2F9TZD9BDv-Ca3ENEPcULOE0VWKmLcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181360795684-kvm0mf1prt31nnmk34u8pu3osujeg2jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
