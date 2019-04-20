@@ -14,13 +14,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tg_novo.database.service.ServiceDatabase;
 import com.example.tg_novo.maps.MapsAction;
 import com.example.tg_novo.maps.interfaces.MapsActionInterf;
+import com.example.tg_novo.models.Notification;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ServiceDatabase fireBaseInterf;
     private MapsActionInterf mapsAction;
     private static volatile TextView historicoNotificatios;
+    FloatingActionButton btnAjudar;
+    FloatingActionButton btnCancelarAjuda;
+
+    EditText nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         FirebaseApp.initializeApp(this);
+
+        nome = findViewById(R.id.name);
+        btnCancelarAjuda = findViewById(R.id.btnCancelarAjuda);
+        btnAjudar = findViewById(R.id.btnAjudar);
+
+
+        btnAjudar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(nome.getText().toString().equalsIgnoreCase("")){
+                    System.out.println("Digite antes um nome");
+                    Toast.makeText(getApplicationContext(), "Digite um nome antes", Toast.LENGTH_SHORT).show();
+                }else{
+                    System.out.println("Ola "+nome.getText().toString());
+                    String usuario = nome.getText().toString();
+                    Notification notification = new Notification(usuario, usuario +" está indo socorrer.\n");
+                    fireBaseInterf.saveNotificationsData(notification);
+                    Toast.makeText(getApplicationContext(), "Notificação enviada", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } );
+
+        btnCancelarAjuda.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(nome.getText().toString().equalsIgnoreCase("")){
+                    System.out.println("Digite antes um nome");
+                    Toast.makeText(getApplicationContext(), "Digite um nome antes", Toast.LENGTH_SHORT).show();
+                }else{
+                    System.out.println("Ola "+nome.getText().toString());
+                    String usuario = nome.getText().toString();
+                    Notification notification = new Notification(usuario, usuario +" está cancelando a ajuda.\n");
+                    fireBaseInterf.saveNotificationsData(notification);
+                    Toast.makeText(getApplicationContext(), "Notificação enviada", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 //        TextView historicoNotificatios = findViewById(R.id.historicoNotificacoes);
 //        System.out.println("Aqui : "+historicoNotificatios);

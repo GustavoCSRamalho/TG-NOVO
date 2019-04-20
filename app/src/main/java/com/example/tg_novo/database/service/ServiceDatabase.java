@@ -67,6 +67,12 @@ public class ServiceDatabase {
 //
 //    }
 
+    public void saveNotificationsData(Notification notification) {
+//
+        fireBaseService.dataBaseRefNofications.push().setValue(notification);
+//
+    }
+
     public void buildConfiguration() {
         supportData = new SupportDataFireDB();
 //        database = FirebaseDatabase.getInstance();
