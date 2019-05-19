@@ -68,9 +68,7 @@ public class ServiceDatabase {
 //    }
 
     public void saveNotificationsData(Notification notification) {
-//
         fireBaseService.dataBaseRefNofications.push().setValue(notification);
-//
     }
 
     public void buildConfiguration() {
@@ -144,8 +142,6 @@ public class ServiceDatabase {
 
     public void setListenerToCoordenateDataBase() {
         final DatabaseReference coordenate = getDataBaseRefCoordenate();
-//        historicoNotificatios = MainActivity.getTextViewHistoricoNotificacoes();
-//        historicoNotificatios.clearComposingText();
         coordenate.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -154,20 +150,15 @@ public class ServiceDatabase {
                     coordenatelist = new ArrayList<>();
                 }
                 coordenatelist.clear();
-//                historicoNotificatios.clearComposingText();
-//                historicoNotificatios.setText("");
-
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     System.out.println(String.valueOf(dsp.getValue()));
                     Coordenate c = new Gson().fromJson(String.valueOf(dsp.getValue()), Coordenate.class);
                     coordenatelist.add(c); //add result into array list
                     System.out.println("1 : "+c.getusuario());
-//                    historicoNotificatios.append(c.getusuario()+"\n");
-
                 }
-//                for (Coordenate coordenate : coordenatelist) {
-//                    mapsActivity.addMarker(new LatLng(coordenate.getLatitude(), coordenate.getLongitude()), coordenate);
-//                }
+                for (Coordenate coordenate : coordenatelist) {
+                    mapsActivity.addMarker(new LatLng(coordenate.getLatitude(), coordenate.getLongitude()), coordenate);
+                }
             }
 
             @Override
@@ -185,14 +176,12 @@ public class ServiceDatabase {
         notification.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                mapsActivity.clear();
                 if(notificationList == null){
                     notificationList = new ArrayList<>();
                 }
                 notificationList.clear();
                 historicoNotificatios.clearComposingText();
                 historicoNotificatios.setText("");
-
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     System.out.println(String.valueOf(dsp.getValue()));
                     Gson gson = new Gson();
@@ -200,19 +189,12 @@ public class ServiceDatabase {
                     System.out.println("DATA : "+data);
 
                     Notification c = new Gson().fromJson(data, Notification.class);
-                    notificationList.add(c); //add result into array list
-//                    System.out.println("1 : "+c.getusuario());
-                    historicoNotificatios.append("Usuario : "+c.getUsuario()+" Mensagem : "+c.getMensagem());
-
+                    notificationList.add(c);
+                    historicoNotificatios.append(c.getUsuario()+" : "+c.getMensagem());
                 }
-//                for (Coordenate coordenate : coordenatelist) {
-//                    mapsActivity.addMarker(new LatLng(coordenate.getLatitude(), coordenate.getLongitude()), coordenate);
-//                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 

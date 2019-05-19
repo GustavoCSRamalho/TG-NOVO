@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Button btnClose = (Button)popupView.findViewById(R.id.btnClose);
 
         historicoNotificatios = popupView.findViewById(R.id.historicoNotificacoes);
-//        System.out.println("Vazio : "+historicoNotificatios);
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
